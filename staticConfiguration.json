@@ -1,0 +1,26 @@
+{
+  "applicationName": "M R Liver",
+  "hangingType": "2x2",
+  "viewports": [
+    {
+      "viewportNumber": 1,
+      "viewportType": "stack",
+      "dataRole": "Portal"
+    },
+    {
+      "viewportNumber": 2,
+      "viewportType": "stack",
+      "dataRole": "Arterial"
+    },
+    {
+      "viewportNumber": 3,
+      "viewportType": "stack",
+      "dataRole": "Native"
+    },
+    {
+      "viewportNumber": 4,
+      "viewportType": "stack",
+      "dataRole": "Hepatobilliary"
+    }
+  ]
+}

@@ -27,6 +27,18 @@ const ViewportActionBar = ({
   getStatusComponent,
 }: ViewportActionBarProps): JSX.Element => {
   const { label, studyDate, seriesDescription, patientInformation } = studyData;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const config = require('../../../../../staticConfiguration.json');
+  let viewPortDataRole;
+  if (label) {
+    const viewportNumber = Number(label);
+    const viewPortConfiguration = config.viewports.find(
+      viewport => Number(viewport.viewportNumber) === viewportNumber
+    );
+    viewPortDataRole = viewPortConfiguration
+      ? viewPortConfiguration.dataRole
+      : '';
+  }
 
   const {
     patientName,
@@ -143,6 +155,10 @@ const ViewportActionBar = ({
             className={`mr-1 text-aqua-pale ${textEllipsisClasses}`}
           >
             {seriesDescription}
+          </span>
+          <div className={separatorClasses}></div>
+          <span className={`mr-1 text-aqua-pale ${textEllipsisClasses}`}>
+            {viewPortDataRole}
           </span>
         </>
       )}

@@ -1,5 +1,6 @@
+import { stageConfiguration } from './viewportDataRoleConfiguration';
+import customDisplaySelectors from './DisplaysetSelectionDataRoleConfiguration';
 import hpMNGrid from './hpMNGrid';
-
 const defaultProtocol = {
   id: 'default',
   locked: true,
@@ -28,73 +29,13 @@ const defaultProtocol = {
     },
     displaySets: [
       {
-        id: 'defaultDisplaySetId',
+        id: 'vp_1DisplaySet',
         matchedDisplaySetsIndex: -1,
       },
     ],
   },
-  displaySetSelectors: {
-    defaultDisplaySetId: {
-      // Matches displaysets, NOT series
-      seriesMatchingRules: [
-        // Try to match series with images by default, to prevent weird display
-        // on SEG/SR containing studies
-        {
-          attribute: 'numImageFrames',
-          constraint: {
-            greaterThan: { value: 0 },
-          },
-        },
-        // This display set will select the specified items by preference
-        // It has no affect if nothing is specified in the URL.
-        {
-          attribute: 'isDisplaySetFromUrl',
-          weight: 10,
-          constraint: {
-            equals: true,
-          },
-        },
-      ],
-      // Can be used to select matching studies
-      // studyMatchingRules: [],
-    },
-  },
-  stages: [
-    {
-      name: 'default',
-      viewportStructure: {
-        layoutType: 'grid',
-        properties: {
-          rows: 1,
-          columns: 1,
-        },
-      },
-      viewports: [
-        {
-          viewportOptions: {
-            viewportType: 'stack',
-            toolGroupId: 'default',
-            // This will specify the initial image options index if it matches in the URL
-            // and will otherwise not specify anything.
-            initialImageOptions: {
-              custom: 'sopInstanceLocation',
-            },
-            // Other options for initialImageOptions, which can be included in the default
-            // custom attribute, or can be provided directly.
-            //   index: 180,
-            //   preset: 'middle', // 'first', 'last', 'middle'
-            // },
-          },
-          displaySets: [
-            {
-              id: 'defaultDisplaySetId',
-            },
-          ],
-        },
-      ],
-      createdDate: '2021-02-23T18:32:42.850Z',
-    },
-  ],
+  displaySetSelectors: customDisplaySelectors,
+  stages: [stageConfiguration],
 };
 
 function getHangingProtocolModule() {

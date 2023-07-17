@@ -8,6 +8,7 @@ import Svg from '../Svg';
 import Icon from '../Icon';
 import IconButton from '../IconButton';
 import Dropdown from '../Dropdown';
+import configuration from '../../../../../staticConfiguration.json';
 
 function Header({
   children,
@@ -47,10 +48,8 @@ function Header({
             {isReturnEnabled && (
               <Icon name="chevron-left" className="w-8 text-primary-active" />
             )}
-            <div className="ml-4">
-              {WhiteLabeling?.createLogoComponentFn?.(React, props) || (
-                <Svg name="logo-ohif" />
-              )}
+            <div className="ml-4 text-white">
+              {configuration.applicationName}
             </div>
           </div>
         </div>
